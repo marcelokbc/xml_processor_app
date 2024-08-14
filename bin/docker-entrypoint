@@ -1,8 +1,13 @@
-#!/bin/bash -e
+#!/bin/bash
+set -e
 
-# If running the rails server then create or migrate existing database
-if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
-  ./bin/rails db:prepare
+# If running the Rails server, create or migrate the database
+if [ "${1}" == "rails" ] && [ "${2}" == "server" ]; then
+  echo "Preparing the database..."
+  bundle exec rake db:prepare
 fi
 
-exec "${@}"
+# Execute the command passed as arguments
+exec "$@"
+
+

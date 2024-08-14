@@ -33,6 +33,3 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart
-
-# Specifies the `bind` option to ensure Puma binds to 0.0.0.0 in production
-bind "tcp://0.0.0.0:#{ENV.fetch('PORT', 3000)}"

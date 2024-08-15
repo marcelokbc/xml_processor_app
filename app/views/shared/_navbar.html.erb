@@ -2,8 +2,8 @@
   <div class="w-full text-gray-700 bg-dark dark-mode:text-gray-200 dark-mode:bg-gray-800">
     <div class="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8 z-50">
       <div class="flex flex-row items-center justify-between p-4">
-          <%= link_to root_path, class: "text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline" do %>
-          processor_app
+          <%= link_to (user_signed_in? ? authenticated_root_path : unauthenticated_root_path), class: "text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline" do %>
+            processor_app
           <% end %>
       </div>
       <nav class="flex-col flex-grow hidden pb-4 md:pb-0 md:flex md:justify-end md:flex-row">

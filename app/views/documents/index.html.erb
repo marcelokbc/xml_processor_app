@@ -1,0 +1,35 @@
+<section class="py-8 bg-blueGray-50">
+  <div class="container px-4 mx-auto flex justify-center">
+    <div class="p-7 pb-16 pt-12 border border-dark-blue rounded-3xl w-11/12">
+      <div class="flex flex-wrap px-9 md:mb-4 mb-4">
+        <div class="w-full md:w-1/2">
+          <h2 class="text-3xl font-heading font-sourcesans font-medium text-gray-500">
+            Documentos
+          </h2>
+
+          <!-- Document list goes here -->
+          <div class="overflow-x-auto my-6">
+            <div class="inline-block min-w-full overflow-hidden">
+              <% if @documents.any? %>
+                <ul>
+                  <% @documents.each do |document| %>
+                    <li>
+                      <%= link_to document.file.filename, rails_blob_path(document.file, disposition: "attachment"), class: "text-blue-600 hover:underline" %>
+                    </li>
+                  <% end %>
+                </ul>
+              <% else %>
+                <p>Nenhum documento encontrado.</p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Keep the upload button on the right-hand side -->
+        <div class="w-full md:w-1/2 max-w-max md:ml-auto">
+          <%= link_to "Novo Documento", new_document_path, class: "mt-4 inline-block bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition duration-300" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

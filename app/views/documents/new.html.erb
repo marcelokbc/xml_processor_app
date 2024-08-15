@@ -1,0 +1,30 @@
+<section class="py-8 bg-blueGray-50">
+  <div class="container px-4 mx-auto flex justify-center">
+    <div class="p-7 pb-16 pt-12 border border-dark-blue rounded-3xl w-11/12">
+      <div class="flex flex-wrap px-9 mb-8 md:mb-0">
+        <div class="w-full md:w-1/2">
+          <h2 class="text-3xl font-heading font-sourcesans font-medium text-gray-500">
+            Novo Documento
+          </h2>
+        </div>
+        <div class="w-full md:w-1/2 max-w-max md:ml-auto">
+          <%= link_to "Voltar para documentos", documents_path, class: "mt-4 inline-block bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition duration-300" %>
+        </div>
+      </div>
+      
+      <div class="flex flex-wrap px-9 mt-8">
+        <div class="w-full md:w-2/3 mx-auto">
+          <%= form_with model: @document, local: true do |form| %>
+            <div class="mb-4">
+              <%= form.label :file, class: "block text-gray-700 text-sm font-bold mb-2" %>
+              <%= form.file_field :file, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+            </div>
+            <div>
+              <%= form.submit "Upload", class: "w-full bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition duration-300" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

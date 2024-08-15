@@ -3,6 +3,8 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.secret_key_base = "067bed1e2fa17074ef9e7c98c24d6025"
+
   # Code is not reloaded between requests.
   config.enable_reloading = false
 

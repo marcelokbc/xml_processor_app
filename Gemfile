@@ -28,6 +28,11 @@ gem "bootsnap", require: false
 
 gem "devise"
 
+gem "sidekiq"
+gem "sidekiq-failures"
+
+gem "nokogiri"
+
 
 group :development, :test do
   gem "debug", platforms: %i[mri mswin mingw x64_mingw]

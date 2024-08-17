@@ -13,5 +13,5 @@ Rails.application.routes.draw do
     root to: "home#index", as: :unauthenticated_root
   end
 
-  resources :documents, only: [:index, :new, :create]
+  resources :documents, only: [:index, :new, :create, :show]
 end

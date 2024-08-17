@@ -1,0 +1,57 @@
+<section class="py-8 bg-blueGray-50">
+  <div class="container px-4 mx-auto flex justify-center">
+    <div class="p-7 pb-16 pt-12 border border-dark-blue rounded-3xl w-11/12">
+      <div class="flex items-center justify-between mb-6">
+        <h1 class="text-3xl font-heading font-medium text-gray-500">
+          Relatório para Documento <%= @document.id %>
+        </h1>
+        <%= link_to "Voltar para documentos", documents_path, class: "inline-block bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition duration-300" %>
+      </div>
+
+      <div>
+        <% if @report.present? %>
+          <div class="mb-8">
+            <h2 class="text-xl font-heading font-medium text-gray-600 mb-2">Dados do Documento Fiscal</h2>
+            <p class="mb-2"><strong>Série:</strong> <%= @report["tax_document"]["serie"] %></p>
+            <p class="mb-2"><strong>NF:</strong> <%= @report["tax_document"]["nNF"] %></p>
+            <p class="mb-2"><strong>Data de Emissão:</strong> <%= @report["tax_document"]["dhEmi"] %></p>
+            <p class="mb-2"><strong>Emitente:</strong> <%= @report["tax_document"]["emit"] %></p>
+            <p class="mb-2"><strong>Destinatário:</strong> <%= @report["tax_document"]["dest"] %></p>
+          </div>
+
+          <div class="mb-8">
+            <h2 class="text-xl font-heading font-medium text-gray-600 mb-2">Produtos</h2>
+            <ul class="list-disc pl-5">
+              <% @report["products"].each do |product| %>
+                <li class="mb-2">
+                  <strong>Nome:</strong> <%= product["name"] %>, 
+                  <strong>NCM:</strong> <%= product["ncm"] %>, 
+                  <strong>CFOP:</strong> <%= product["cfop"] %>, 
+                  <strong>Unidade:</strong> <%= product["ucom"] %>, 
+                  <strong>Quantidade:</strong> <%= product["qcom"] %>, 
+                  <strong>Preço Unitário:</strong> <%= product["vuncom"] %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+
+          <div class="mb-8">
+            <h2 class="text-xl font-heading font-medium text-gray-600 mb-2">Impostos</h2>
+            <p class="mb-2"><strong>ICMS:</strong> <%= @report["taxes"]["icms"] %></p>
+            <p class="mb-2"><strong>IPI:</strong> <%= @report["taxes"]["ipi"] %></p>
+            <p class="mb-2"><strong>PIS:</strong> <%= @report["taxes"]["pis"] %></p>
+            <p class="mb-2"><strong>COFINS:</strong> <%= @report["taxes"]["cofins"] %></p>
+          </div>
+
+          <div class="mb-8">
+            <h2 class="text-xl font-heading font-medium text-gray-600 mb-2">Totalizadores</h2>
+            <p class="mb-2"><strong>Valor Total dos Produtos:</strong> <%= @report["totalizers"]["total_prod_value"] %></p>
+            <p class="mb-2"><strong>Valor Total dos Impostos:</strong> <%= @report["totalizers"]["total_tax_value"] %></p>
+          </div>
+        <% else %>
+          <p>Relatório ainda não disponível.</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

@@ -22,14 +22,15 @@ class DocumentsController < ApplicationController
 
   def create
     @document = current_user.documents.build(document_params)
-    
-    if@document.save
-      ProcessXmlJob.perform_later(@document.id)
+
+    if @document.save
+      doc = Document.find(@document.id)
+      ProcessXmlJob.perform_later(@document.id, doc.file.download)
       flash[:success] = "Documento enviado com sucesso. Processando o arquivo..."
       redirect_to document_path(@document)
     else
       flash[:error] = "Erro ao enviar o documento."
-      render :new, status::unprocessable_entityend
+      render :new, status::unprocessable_entity
     end
   end
 

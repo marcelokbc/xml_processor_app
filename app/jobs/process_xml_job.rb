@@ -2,10 +2,9 @@ require'nokogiri'
 
 class ProcessXmlJob < ApplicationJob
   queue_as :default
-  def perform(document_id)
+  def perform(document_id, xml_content)
     document = Document.find(document_id)
     
-    xml_content = document.file.download
     doc = Nokogiri::XML(xml_content)
     
     namespaces = { 'nfe' => 'http://www.portalfiscal.inf.br/nfe' }

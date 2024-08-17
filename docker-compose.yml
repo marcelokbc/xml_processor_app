@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
       POSTGRES_DB: xml_processor_development
-    
+
   worker:
     image: xml_processor_app
     build: .
@@ -17,8 +17,6 @@ services:
       RAILS_ENV: development
       REDIS_URL: redis://redis:6379/0
       DATABASE_URL: postgres://root:root@db:5432/xml_processor_development
-    volumes: 
-      - ./storage/:/rails/storage
 
   web:
     image: xml_processor_app
@@ -30,5 +28,3 @@ services:
       DATABASE_URL: postgres://root:root@db:5432/xml_processor_development
     ports:
       - "3000:3000"
-    volumes: 
-      - ./storage/:/rails/storage

@@ -13,7 +13,7 @@ console_command = '/rails/bin/rails console'
   
 
 [[mounts]]
-  source = 'xml_storage'
+  source = 'data'
   destination = '/storage'
 
 [processes]

@@ -20,6 +20,8 @@ gem "cssbundling-rails"
 
 gem "jbuilder"
 
+gem 'pg'
+
 gem "redis", ">= 4.0.1"
 
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]

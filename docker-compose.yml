@@ -1,0 +1,25 @@
+services:
+  redis:
+    image: redis:alpine
+    
+  worker:
+    image: xml_processor_app
+    build: .
+    command: bundle exec sidekiq
+    environment:
+      RAILS_ENV: development
+      REDIS_URL: redis://redis:6379/0
+    volumes: 
+      - ./storage/:/rails/storage
+
+  web:
+    image: xml_processor_app
+    build: .
+    command: bundle exec rails s -b 0.0.0.0
+    environment:
+      RAILS_ENV: development
+      REDIS_URL: redis://redis:6379/0
+    ports:
+      - "3000:3000"
+    volumes: 
+      - ./storage/:/rails/storage

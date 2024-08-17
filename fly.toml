@@ -16,6 +16,10 @@ console_command = '/rails/bin/rails console'
   source = 'data'
   destination = '/data'
 
+[processes]
+  app = "bin/rails server"
+  worker = "bundle exec sidekiq"
+
 [http_service]
   internal_port = 3000
   force_https = true

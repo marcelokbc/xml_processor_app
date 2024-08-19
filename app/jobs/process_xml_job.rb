@@ -2,6 +2,7 @@ require'nokogiri'
 
 class ProcessXmlJob < ApplicationJob
   queue_as :default
+  
   def perform(document_id, xml_content)
     document = Document.find(document_id)
     
@@ -57,6 +58,6 @@ class ProcessXmlJob < ApplicationJob
 
     puts report.to_json
 
-    Report.create!(document: document, data: report)
+    Report.create!(document: document, data: report.to_json)
   end
 end 

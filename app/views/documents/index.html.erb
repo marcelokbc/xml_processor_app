@@ -6,7 +6,15 @@
           <h2 class="text-3xl font-heading font-sourcesans font-medium text-gray-500">
             Documentos
           </h2>
-
+          <%= form_with url: documents_path, method: :get, class: "mt-4" do %>
+            <div class="flex items">
+              <%= text_field_tag :query, params[:query], class: "w-full border border-gray-300 rounded-lg p-2", placeholder: "Buscar pelo NF "  %>
+              <%= submit_tag "Buscar", class: "bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition duration-300" %>
+            </div>
+            <div class="mt-4">
+              <%= link_to "Limpar Filtros", documents_path, class: "text-blue-600 hover:underline" %>
+            </div>
+          <% end %>
           <div class="overflow-x-auto my-6">
             <div class="inline-block min-w-full overflow-hidden">
               <% if @documents.any? %>

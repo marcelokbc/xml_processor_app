@@ -4,22 +4,15 @@ class DocumentsController < ApplicationController
   def index
     if params[:query].present?
       query_params = "%#{params[:query]}%"
-      
+  
       @documents = current_user.documents
-                       .joins(:report)
-                       .joins("INNER JOIN active_storage_attachments ON active_storage_attachments.record_id = documents.id AND active_storage_attachments.record_type = 'Document'")
-                       .joins("INNER JOIN active_storage_blobs ON active_storage_blobs.id = active_storage_attachments.blob_id")
-                       .where(
-                         "active_storage_blobs.filename ILIKE :query OR
-                          reports.data->'tax_document'->>'nNF' ILIKE :query OR
-                          reports.data->'tax_document'->>'emit' ILIKE :query OR
-                          reports.data->'tax_document'->>'dest' ILIKE :query OR
-                          EXISTS (
-                            SELECT 1 FROM jsonb_array_elements(reports.data->'products') AS product
-                            WHERE product->>'name' ILIKE :query
-                          )",
-                         query: query_params
-                       )
+                     .joins(:report)
+                     .joins("INNER JOIN active_storage_attachments ON active_storage_attachments.record_id = documents.id AND active_storage_attachments.record_type = 'Document'")
+                     .joins("INNER JOIN active_storage_blobs ON active_storage_blobs.id = active_storage_attachments.blob_id")
+                     .where(
+                       "active_storage_blobs.filename ILIKE :query OR reports.data::jsonb->'tax_document'->>'nNF' ILIKE :query",
+                       query: query_params
+                     )
     else
       @documents = current_user.documents
     end
